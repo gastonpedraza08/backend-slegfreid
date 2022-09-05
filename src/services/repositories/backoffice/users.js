@@ -1,5 +1,18 @@
 const { User, Role, Pharma } = require('../../../models');
 
+let modelsToJoin = [
+	{
+		model: Role,
+		required: true,
+		as: 'role'
+	},
+	{
+		model: Pharma,
+		required: true,
+		as: 'pharma'
+	}
+];
+
 const getByEmail = async email => {
 	const result = await User.findOne({
 		include: [{
@@ -14,11 +27,7 @@ const getByEmail = async email => {
 
 const getById = async id => {
 	const result = await User.findOne({
-		include: [{
-			model: Role,
-			required: true,
-			as: 'role'
-		}],
+		include: modelsToJoin,
 		where: { id }
 	});
 	return result;
@@ -64,18 +73,7 @@ const getUsers = async (params) => {
 		limit: params.limit,
 		offset: params.from,
 		order: [[params.orderBy, params.order]],
-		include: [
-			{
-				model: Role,
-				required: true,
-				as: 'role'
-			},
-			{
-				model: Pharma,
-				required: true,
-				as: 'pharma'
-			}
-		],
+		include: modelsToJoin,
 	});
 
 	return result;

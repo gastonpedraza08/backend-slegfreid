@@ -93,4 +93,31 @@ router.get('/', requireAdminSignin, async (req, res) => {
 	}
 });
 
+router.get('/:id', async (req, res) => {
+	try {
+
+		const userId = req.params.id;
+		const user = await handler.getUserById(userId);
+	
+		if (!user) {
+			return res.status(400).json({
+				ok: false,
+				error: 'No se encontre el usuario con el id ' + req.params.id,
+			});
+		}
+		
+		user.password = undefined;
+		res.status(200).json({
+			ok: true,
+			user
+		});
+	} catch (error) {
+		const errorToReturn = errorHandler(error);
+		res.status(errorToReturn.status).json({
+			ok: false,
+			error: errorToReturn.message
+		});
+	}
+});
+
 module.exports = router;
