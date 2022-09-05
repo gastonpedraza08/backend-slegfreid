@@ -8,7 +8,7 @@ const {
 	validLogin,
 } = require('./middlewares/express-validator/auth');
 const { errorHandler } = require('../../utils/errorHandler');
-const { requireSignin } = require('./middlewares/auth');
+const { requireAdminSignin } = require('./middlewares/auth');
 
 const createAccessToken = (body) => {
 	return jwt.sign(body, process.env.JWT_SECRET, { expiresIn: '7d' });
@@ -70,7 +70,7 @@ router.post('/login', validLogin, validate, async (req, res) => {
 	}
 });
 
-router.post('/renewtoken', requireSignin, (req, res) => {
+router.post('/renewtoken', requireAdminSignin, (req, res) => {
 	try {
 		const { id, name, email, role } = req.user;
 		const token = createAccessToken({

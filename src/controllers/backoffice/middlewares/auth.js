@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const requireSignin = async (req, res, next) => {
+const requireAdminSignin = async (req, res, next) => {
 	const authorization = req.get('Authorization');
 	
 	if (!authorization) {
@@ -36,5 +36,5 @@ const requireSignin = async (req, res, next) => {
 }
 
 module.exports = {
-	requireSignin,
+	requireAdminSignin,
 }
