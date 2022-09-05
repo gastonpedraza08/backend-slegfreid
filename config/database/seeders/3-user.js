@@ -16,6 +16,16 @@ module.exports = {
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
+				{
+					id: 2,
+					email: 'gp.ju.dev@gmail.com',
+					name: 'gaston pedraza',
+					password: bcrypt.hashSync("Abcd1234", 10),
+					roleId: 2,
+					pharmaId: 2,
+					createdAt: new Date(),
+					updatedAt: new Date(),
+				},
 			],
 			{}
 		);

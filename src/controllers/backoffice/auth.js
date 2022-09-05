@@ -26,6 +26,15 @@ router.post('/login', validLogin, validate, async (req, res) => {
 			});
 		}
 
+		let adminRoleId = 1;
+
+		if (user.roleId !== adminRoleId) {
+			return res.status(401).json({
+				ok: false,
+				error: 'El usuario proporcionado no es administrador.'
+			});
+		}
+
 		const hashed_password = user.password;
 		const isCorrectPassword = bcrypt.compareSync(password, hashed_password);
 
@@ -62,18 +71,26 @@ router.post('/login', validLogin, validate, async (req, res) => {
 });
 
 router.post('/renewtoken', requireSignin, (req, res) => {
-	const { id, name, email, role } = req.user;
-	const token = createAccessToken({
-		id, 
-		name, 
-		email, 
-		role: role.name
-	});
-
-	return res.status(200).json({
-		ok: true,
-		token,
-	});
+	try {
+		const { id, name, email, role } = req.user;
+		const token = createAccessToken({
+			id, 
+			name, 
+			email, 
+			role: role.name
+		});
+	
+		return res.status(200).json({
+			ok: true,
+			token,
+		});
+	} catch (error) {
+		const errorToReturn = errorHandler(error);
+		res.status(errorToReturn.status).json({
+			ok: false,
+			error: errorToReturn.message
+		});
+	}
 });
 
 module.exports = router;

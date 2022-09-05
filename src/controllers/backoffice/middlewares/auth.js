@@ -19,32 +19,22 @@ const requireSignin = async (req, res, next) => {
 				error: 'invalid token'
 			});
 		} else {
+
+			let adminRoleId = 1;
+
+			if (decoded.roleId !== adminRoleId) {
+				return res.status(401).json({
+					ok: false,
+					error: 'El usuario proporcionado no es administrador.'
+				});
+			}
+
 			req.user = decoded;
 			next();
 		}
 	});
 }
 
-const adminMiddleware = async (req, res, next) => {
-	const user = await getById(req.user.id);
-	if (!user) {
-		return res.status(400).json({
-			ok: false,
-			error: 'user not found'
-		});
-	}
-	if (user.roleId !== 1) {
-		return res.status(400).json({
-			ok: false,
-			error: 'admin resource, access denied'
-		});
-	}
-	req.profile = user;
-	next();
-};
-
-
 module.exports = {
 	requireSignin,
-	adminMiddleware
 }
