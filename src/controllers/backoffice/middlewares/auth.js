@@ -20,9 +20,9 @@ const requireAdminSignin = async (req, res, next) => {
 			});
 		} else {
 
-			let adminRoleId = 1;
+			let adminRoleId = "admin";
 
-			if (decoded.roleId !== adminRoleId) {
+			if (decoded.role !== adminRoleId) {
 				return res.status(401).json({
 					ok: false,
 					error: 'El usuario proporcionado no es administrador.'

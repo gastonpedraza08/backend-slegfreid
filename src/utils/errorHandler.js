@@ -4,11 +4,11 @@ const internalError = (error) => {
 	switch (error.code) {
 		case 403:
 			errorToReturn.status = 500;
-			errorToReturn.message = 'can not send email';
+			errorToReturn.message = 'No se pudo enviar el email.';
 			break;
 		default:
 			errorToReturn.status = 500;
-			errorToReturn.message = 'something went wrong';
+			errorToReturn.message = 'Algo salió mal. Error en el servidor.';
 	}
 	return errorToReturn;
 };

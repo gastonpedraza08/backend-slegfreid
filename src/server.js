@@ -9,6 +9,7 @@ const cors = require('cors');
 //const authRouter = require('./controllers/auth');
 //backoffice
 const backofficeAuthRouter = require('./controllers/backoffice/auth');
+const backofficeUserRouter = require('./controllers/backoffice/users');
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use('/api/users', usersRouter);
 //app.use('/api/auth', authRouter);
 app.use('/api/backoffice/auth', backofficeAuthRouter);
+app.use('/api/backoffice/users', backofficeUserRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
