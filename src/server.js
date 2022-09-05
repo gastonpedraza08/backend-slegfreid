@@ -5,8 +5,10 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 
-const usersRouter = require('./controllers/users');
-const authRouter = require('./controllers/auth');
+//const usersRouter = require('./controllers/users');
+//const authRouter = require('./controllers/auth');
+//backoffice
+const backofficeAuthRouter = require('./controllers/backoffice/auth');
 
 const app = express();
 
@@ -22,8 +24,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use('/api/users', usersRouter);
-app.use('/api/auth', authRouter);
+//app.use('/api/users', usersRouter);
+//app.use('/api/auth', authRouter);
+app.use('/api/backoffice/auth', backofficeAuthRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

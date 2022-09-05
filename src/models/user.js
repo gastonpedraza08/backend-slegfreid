@@ -14,18 +14,21 @@ module.exports = (sequelize, DataTypes) => {
 				as: 'role',
 				foreingKey: 'roleId',
 			});
+			User.belongsTo(models.Pharma, {
+				as: 'pharma',
+				foreingKey: 'pharmaId',
+			});
 		}
 	};
 	User.init({
 		email: DataTypes.STRING,
 		name: DataTypes.STRING,
 		password: DataTypes.STRING,
-		salt: DataTypes.STRING,
 		roleId: DataTypes.INTEGER,
-		resetPasswordLink: DataTypes.STRING,
-		createdAt: DataTypes.DATE(6),
-    updatedAt: DataTypes.DATE(6),
-    deletedAt: DataTypes.DATE(6),
+		pharmaId: DataTypes.INTEGER,
+		createdAt: DataTypes.DATE(),
+	    updatedAt: DataTypes.DATE(),
+	    deletedAt: DataTypes.DATE(),
 	}, {
 		sequelize,
 		modelName: 'User',

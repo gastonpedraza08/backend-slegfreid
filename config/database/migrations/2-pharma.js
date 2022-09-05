@@ -1,42 +1,22 @@
 'use strict';
 module.exports = {
 	up: async (queryInterface, Sequelize) => {
-		await queryInterface.createTable('Users', {
+		await queryInterface.createTable('Pharmas', {
 			id: {
 				allowNull: false,
 				autoIncrement: true,
 				primaryKey: true,
 				type: Sequelize.INTEGER,
 			},
-			email: {
-				type: Sequelize.STRING,
-				allowNull: false,
-				unique: true,
-			},
 			name: {
-				type: Sequelize.STRING,
 				allowNull: false,
-			},
-			password: {
 				type: Sequelize.STRING,
-				allowNull: false,
 			},
-			salt: {
-				type: Sequelize.STRING
-			},
-			roleId: {
-				type: Sequelize.INTEGER,
-				defaultValue: 2,
-				references: {
-					model: 'Roles',
-					key: 'id',
-				},
-				onUpdate: 'CASCADE',
-				onDelete: 'SET NULL',
-			},
-			resetPasswordLink: {
+			description: {
 				type: Sequelize.STRING,
-				defaultValue: ''
+			},
+			assets: {
+				type: Sequelize.JSON,
 			},
 			createdAt: {
 				allowNull: false,
@@ -52,6 +32,6 @@ module.exports = {
 		});
 	},
 	down: async (queryInterface, Sequelize) => {
-		await queryInterface.dropTable('Users');
+		await queryInterface.dropTable('Pharmas');
 	},
 };

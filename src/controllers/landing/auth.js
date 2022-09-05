@@ -1,18 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { validationResult } = require('express-validator');
 const _ = require('lodash');
-const { OAuth2Client } = require('google-auth-library');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const axios = require('axios');
 const moment = require('moment');
 
 const handler = require('../handlers/users');
-const {
-	sendEmailAccountActivation,
-	sendEmailResetPassword
-} = require('../services/external/emailSender');
 const { validate } = require('../utils/commons');
 const {
 	validSign,

@@ -3,19 +3,25 @@
 module.exports = {
 	up: async (queryInterface, Sequelize) => {
 		await queryInterface.bulkInsert(
-			'Roles', 
+			'Pharmas', 
 			[
 				{
 					id: 1,
-					name: 'admin',
-					description: 'administator',
+					name: 'pharma 1',
+					description: 'description pharma 1',
+					assets: JSON.stringify({
+						mainImage: "url.com"
+					}),
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
 				{
 					id: 2,
-					name: 'standard',
-					description: 'standard',
+					name: 'pharma 2',
+					description: 'description pharma 2',
+					assets: JSON.stringify({
+						mainImage: "url.com"
+					}),
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
@@ -25,6 +31,6 @@ module.exports = {
 	},
 
 	down: async (queryInterface, Sequelize) => {
-		await queryInterface.bulkDelete('Roles', null, {});
+		await queryInterface.bulkDelete('Pharmas', null, {});
 	},
 };
