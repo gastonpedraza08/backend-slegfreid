@@ -67,6 +67,16 @@ const deleteByEmail = async email => {
 	});
 };
 
+const deleteById = async id => {
+	const result = await User.destroy({
+		where: {
+			id
+		},
+	});
+
+	return result;
+};
+
 const getUsers = async (params) => {
 
 	const result = await User.findAndCountAll({
@@ -88,4 +98,5 @@ module.exports = {
 	getById,
 	deleteByEmail,
 	getUsers,
+	deleteById,
 };

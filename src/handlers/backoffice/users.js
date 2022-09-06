@@ -33,6 +33,12 @@ const updateUser = async data => {
 
 const deleteUserByEmail = async email => {
 	const result = await repository.deleteByEmail(email);
+	return result;
+}
+
+const deleteUserById = async id => {
+	const result = await repository.deleteById(id);
+	return result;
 }
 
 const getUsers = async (params, search) => {
@@ -49,4 +55,5 @@ module.exports = {
 	getUserById,
 	deleteUserByEmail,
 	getUsers,
+	deleteUserById,
 };

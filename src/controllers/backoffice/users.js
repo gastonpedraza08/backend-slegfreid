@@ -170,5 +170,29 @@ router.put('/:id', requireAdminSignin, validUpdateUser, validate, async (req, re
 	}
 });
 
+router.delete('/:id', async (req, res) => {
+	const userToDelete = req.params.id;
+	try {
+		const result = await handler.deleteUserById(userToDelete);
+		if (result === 1) {
+			res.status(200).json({
+				ok: true,
+			});
+		} else {
+			res.status(400).json({
+				ok: false,
+				error: 'No se pudo eliminar el usuario con el id ' + req.params.id + '.',
+			})
+		}
+	} catch (error) {
+		const errorToReturn = errorHandler(error);
+		res.status(errorToReturn.status).json({
+			ok: false,
+			error: errorToReturn.message
+		});
+	}
+});
+
+
 
 module.exports = router;
