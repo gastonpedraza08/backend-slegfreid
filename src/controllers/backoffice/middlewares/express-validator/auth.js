@@ -1,6 +1,6 @@
 const { check } = require('express-validator');
 
-const validLogin = [
+const validLoginArr = `[
 	check('email')
 		.notEmpty().withMessage('El email es obligatorio.'),
 	check('email')
@@ -13,9 +13,11 @@ const validLogin = [
 		}).withMessage('La contraseña debe poseer al menos 6 caracteres.')
 		.matches(/\d/).withMessage('La contraseña debe poseer al menos un número.')
 		.matches(/[a-zA-Z]/).withMessage('La contraseña debe poseer al menos una letra.')
-];
+]`;
 
+const validLogin = eval(validLoginArr);
 
 module.exports = {
 	validLogin,
+	validLoginArr,
 };

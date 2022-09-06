@@ -27,10 +27,6 @@ const createUser = async data => {
 	return user;
 };
 
-const updateUser = async data => {
-	const result = await repository.update(data);
-}
-
 const deleteUserByEmail = async email => {
 	const result = await repository.deleteByEmail(email);
 	return result;
@@ -51,7 +47,6 @@ module.exports = {
 	getUserByEmail,
 	getUserByResetPasswordLink,
 	createUser,
-	updateUser,
 	getUserById,
 	deleteUserByEmail,
 	getUsers,
