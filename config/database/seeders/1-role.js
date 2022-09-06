@@ -1,4 +1,5 @@
 'use strict';
+const constants = require('../../constants');
 
 module.exports = {
 	up: async (queryInterface, Sequelize) => {
@@ -6,14 +7,14 @@ module.exports = {
 			'Roles', 
 			[
 				{
-					id: 1,
+					id: constants.roles.ADMIN_ID,
 					name: 'admin',
 					description: 'administator',
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
 				{
-					id: 2,
+					id: constants.roles.STANDARD_USER_ID,
 					name: 'standard',
 					description: 'standard',
 					createdAt: new Date(),

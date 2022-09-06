@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const constants = require('../../../../config/constants');
 
 const requireAdminSignin = async (req, res, next) => {
 	const authorization = req.get('Authorization');
@@ -19,10 +20,7 @@ const requireAdminSignin = async (req, res, next) => {
 				error: 'invalid token'
 			});
 		} else {
-
-			let adminRoleId = "admin";
-
-			if (decoded.role !== adminRoleId) {
+			if (decoded.roleId !== constants.roles.ADMIN_ID) {
 				return res.status(401).json({
 					ok: false,
 					error: 'El usuario proporcionado no es administrador.'

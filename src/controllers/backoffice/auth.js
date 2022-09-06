@@ -9,6 +9,7 @@ const {
 } = require('./middlewares/express-validator/auth');
 const { errorHandler } = require('../../utils/errorHandler');
 const { requireAdminSignin } = require('./middlewares/auth');
+const constants = require('../../../config/constants');
 
 const createAccessToken = (body) => {
 	return jwt.sign(body, process.env.JWT_SECRET, { expiresIn: '7d' });
@@ -26,9 +27,7 @@ router.post('/login', validLogin, validate, async (req, res) => {
 			});
 		}
 
-		let adminRoleId = 1;
-
-		if (user.roleId !== adminRoleId) {
+		if (user.roleId !== constants.roles.ADMIN_ID) {
 			return res.status(401).json({
 				ok: false,
 				error: 'El usuario proporcionado no es administrador.'
@@ -50,7 +49,7 @@ router.post('/login', validLogin, validate, async (req, res) => {
 			id, 
 			name, 
 			email, 
-			role: role.name
+			roleId: role.id,
 		});
 
 		user.password = undefined;
@@ -77,7 +76,7 @@ router.post('/renewtoken', requireAdminSignin, (req, res) => {
 			id, 
 			name, 
 			email, 
-			role: role.name
+			roleId: role.id
 		});
 	
 		return res.status(200).json({

@@ -11,7 +11,7 @@ const validLoginArr = `[
 		.isLength({
 			min: 6
 		}).withMessage('La contraseña debe poseer al menos 6 caracteres.')
-		.matches(/\d/).withMessage('La contraseña debe poseer al menos un número.')
+		.matches(/[1234567890]/).withMessage('La contraseña debe poseer al menos un número.')
 		.matches(/[a-zA-Z]/).withMessage('La contraseña debe poseer al menos una letra.')
 ]`;
 
