@@ -71,12 +71,12 @@ router.post('/login', validLogin, validate, async (req, res) => {
 
 router.post('/renewtoken', requireAdminSignin, (req, res) => {
 	try {
-		const { id, name, email, role } = req.user;
+		const { id, name, email, roleId } = req.user;
 		const token = createAccessToken({
 			id, 
 			name, 
 			email, 
-			roleId: role.id
+			roleId,
 		});
 	
 		return res.status(200).json({

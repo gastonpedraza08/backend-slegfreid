@@ -1,32 +1,23 @@
 const { check } = require('express-validator');
 
-const validSign = [
-	check('name', 'El nombre es requerido.').notEmpty(),
+const validLoginArr = `[
 	check('email')
-		.isEmail().withMessage('Debe ingresar un correo electrónico válido.'),
-	check('password', 'La contraseña es obligatoria.')
-		.notEmpty(),
+		.notEmpty().withMessage('El email es obligatorio.'),
+	check('email')
+		.isEmail().withMessage('Debe ser una dirección de correo electrónico válida.'),
+	check('password')
+		.notEmpty().withMessage('La contraseña es obligatoria.'),
 	check('password')
 		.isLength({
 			min: 6
-		}).withMessage('La contraseña debe contener al menos 6 caracteres.')
-		.matches(/\d/).withMessage('La contraseña debe contener al menos un número.')
-];
+		}).withMessage('La contraseña debe poseer al menos 6 caracteres.')
+		.matches(/[1234567890]/).withMessage('La contraseña debe poseer al menos un número.')
+		.matches(/[a-zA-Z]/).withMessage('La contraseña debe poseer al menos una letra.')
+]`;
 
-const validLogin = [
-	check('email')
-		.isEmail().withMessage('must be a valid email address'),
-	check('password', 'password is required')
-		.notEmpty(),
-	check('password')
-		.isLength({
-			min: 6
-		}).withMessage('password must contain at least 6 characters')
-		.matches(/\d/).withMessage('password must contain a number')
-];
-
+const validLogin = eval(validLoginArr);
 
 module.exports = {
-	validSign,
 	validLogin,
+	validLoginArr,
 };
