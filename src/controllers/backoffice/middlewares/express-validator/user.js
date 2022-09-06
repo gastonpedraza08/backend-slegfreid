@@ -11,7 +11,20 @@ const validUser = [
         .notEmpty().withMessage('El tipo de pharma es obligatorio.'),
 ];
 
+const validUpdateUser = [
+	...validLogin.map(validItem => {
+        return validItem.optional()
+    }),
+    check('name')
+		.notEmpty().withMessage('El nombre es obligatorio.').optional(),
+    check('roleId')
+        .notEmpty().withMessage('El tipo de usuario es obligatorio.').optional(),
+    check('pharmaId')
+        .notEmpty().withMessage('El tipo de pharma es obligatorio.').optional(),
+];
+
 
 module.exports = {
 	validUser,
+    validUpdateUser,
 };
