@@ -15,11 +15,7 @@ let modelsToJoin = [
 
 const getByEmail = async email => {
 	const result = await User.findOne({
-		include: [{
-			model: Role,
-			required: true,
-			as: 'role'
-		}],
+		include: modelsToJoin,
 		where: { email }
 	});
 	return result;
@@ -72,6 +68,7 @@ const deleteById = async id => {
 		where: {
 			id
 		},
+		force: true
 	});
 
 	return result;

@@ -1,8 +1,7 @@
 const { check } = require('express-validator');
 const { validLogin } = require('./auth.js');
 
-const validUser = [
-	...validLogin,
+const validBodyUser = [
     check('name')
 		.notEmpty().withMessage('El nombre es obligatorio.'),
     check('roleId')
@@ -11,16 +10,18 @@ const validUser = [
         .notEmpty().withMessage('El tipo de pharma es obligatorio.'),
 ];
 
+const validUser = [
+	...validLogin,
+    ...validBodyUser,
+];
+
 const validUpdateUser = [
 	...validLogin.map(validItem => {
         return validItem.optional()
     }),
-    check('name')
-		.notEmpty().withMessage('El nombre es obligatorio.').optional(),
-    check('roleId')
-        .notEmpty().withMessage('El tipo de usuario es obligatorio.').optional(),
-    check('pharmaId')
-        .notEmpty().withMessage('El tipo de pharma es obligatorio.').optional(),
+    ...validBodyUser.map(validItem => {
+        return validItem.optional()
+    }),
 ];
 
 
