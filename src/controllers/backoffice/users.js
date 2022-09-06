@@ -103,7 +103,7 @@ router.get('/:id', requireAdminSignin, async (req, res) => {
 		if (!user) {
 			return res.status(400).json({
 				ok: false,
-				error: 'No se encontre el usuario con el id ' + req.params.id,
+				error: 'No se encontre el usuario con el id ' + req.params.id + '.',
 			});
 		}
 		
@@ -127,7 +127,7 @@ router.put('/:id', requireAdminSignin, validUpdateUser, validate, async (req, re
 		if (!user) {
 			return res.status(400).json({
 				ok: false,
-				error: 'No se encontre el usuario con el id ' + req.params.id,
+				error: 'No se encontre el usuario con el id ' + req.params.id + '.',
 			});
 		}
 
