@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 
-//const usersRouter = require('./controllers/users');
 const authRouter = require('./controllers/landing/auth');
 //backoffice
 const backofficeAuthRouter = require('./controllers/backoffice/auth');
@@ -26,8 +25,6 @@ app.use(express.urlencoded({limit: '50mb', extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-//app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/backoffice/auth', backofficeAuthRouter);
 app.use('/api/backoffice/users', backofficeUserRouter);
