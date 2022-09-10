@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
 		password: DataTypes.STRING,
 		roleId: DataTypes.INTEGER,
 		pharmaId: DataTypes.INTEGER,
+		characterName: DataTypes.STRING,
 		createdAt: DataTypes.DATE(),
 	    updatedAt: DataTypes.DATE(),
 	    deletedAt: DataTypes.DATE(),

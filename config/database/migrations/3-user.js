@@ -40,6 +40,10 @@ module.exports = {
 				onUpdate: 'CASCADE',
 				onDelete: 'SET NULL',
 			},
+			characterName: {
+				type: Sequelize.STRING,
+				allowNull: true,
+			},
 			createdAt: {
 				allowNull: false,
 				type: Sequelize.DATE(),
