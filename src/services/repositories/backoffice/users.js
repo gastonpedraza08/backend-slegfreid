@@ -1,4 +1,4 @@
-const { User, Role, Pharma } = require('../../../models');
+const { User, Role, Pharma } = require('../../../models-sequelize');
 
 let modelsToJoin = [
 	{

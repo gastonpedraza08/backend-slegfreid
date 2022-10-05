@@ -4,8 +4,8 @@
  * Module dependencies.
  */
 const { createSockets } = require('../src/utils/sockets');
-const { sequelize } = require('../src/models');
-const config = require('../config/config');
+const { sequelize } = require('../src/models-sequelize');
+const config = require('../config-sequelize/config');
 
 const app = require('../src/server');
 const debug = require('debug')('server:server');

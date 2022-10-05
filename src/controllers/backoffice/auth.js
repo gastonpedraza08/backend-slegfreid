@@ -9,7 +9,7 @@ const {
 } = require('./middlewares/express-validator/auth');
 const { errorHandler } = require('../../utils/errorHandler');
 const { requireAdminSignin } = require('./middlewares/auth');
-const constants = require('../../../config/constants');
+const constants = require('../../../config-sequelize/constants');
 
 const createAccessToken = (body) => {
 	return jwt.sign(body, process.env.JWT_SECRET, { expiresIn: '7d' });

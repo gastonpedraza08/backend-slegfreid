@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const constants = require('../../../../config/constants');
+const constants = require('../../../../config-sequelize/constants');
 
 const requireAdminSignin = async (req, res, next) => {
 	const authorization = req.get('Authorization');

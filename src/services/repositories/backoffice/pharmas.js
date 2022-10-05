@@ -1,4 +1,4 @@
-const { Pharma } = require('../../../models');
+const { Pharma } = require('../../../models-sequelize');
 
 const getById = async id => {
 	const result = await Pharma.findOne({

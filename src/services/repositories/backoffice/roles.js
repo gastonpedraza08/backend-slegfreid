@@ -1,4 +1,4 @@
-const { Role } = require('../../../models');
+const { Role } = require('../../../models-sequelize');
 
 const getById = async id => {
 	const result = await Role.findOne({
