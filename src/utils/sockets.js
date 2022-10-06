@@ -1,4 +1,5 @@
 const socketIO = require('socket.io');
+const { models: { Message } } = require('../../models-mongoose');
 
 const arrOrigins = [
     "http://localhost:3001",
