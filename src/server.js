@@ -6,6 +6,7 @@ const logger = require('morgan');
 const cors = require('cors');
 
 const authRouter = require('./controllers/landing/auth');
+const chatRouter = require('./controllers/landing/chats');
 //backoffice
 const backofficeAuthRouter = require('./controllers/backoffice/auth');
 const backofficeUserRouter = require('./controllers/backoffice/users');
@@ -26,6 +27,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/auth', authRouter);
+app.use('/api/chat', chatRouter);
 app.use('/api/backoffice/auth', backofficeAuthRouter);
 app.use('/api/backoffice/users', backofficeUserRouter);
 app.use('/api/backoffice/roles', backofficeRoleRouter);

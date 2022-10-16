@@ -2,14 +2,13 @@
 
 module.exports = mongoose => {
   const newSchema = new mongoose.Schema({
-    // for all products
-    chatId: {
-      type: String,
+    senderId: {
+      type: Number,
       required: true
     },
-    senderId: {
-      type: String,
-      required: true
+    chatId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
     },
     message: {
       type: String,
@@ -22,6 +21,6 @@ module.exports = mongoose => {
     }
   });
 
-  const Product = mongoose.model('Product', newSchema);
-  return Product;
+  const Message = mongoose.model('Message', newSchema);
+  return Message;
 };
